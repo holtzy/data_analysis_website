@@ -1,0 +1,56 @@
+---
+title: "Analysis the gapminder dataset"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries
+
+Let's load some libraries needed
+```{r warning=FALSE }
+# Libraries
+library(tidyverse)   # includes ggplot2
+library(hrbrthemes)  # better chart appearance
+library(viridis)     # better color palette
+library(plotly)      # interactive charts
+#library(gridExtra)
+
+# The dataset is provided in the gapminder library
+library(gapminder)
+```
+
+## Data wrangling
+
+Let's keep data for 2007 only
+
+```{r}
+data <- gapminder %>% filter(year=="2007") %>% select(-year)
+```
+
+
+## Let's build a chart
+
+Build the chart with ggplot2, make it interactive with plotly.
+
+
+```{r}
+# Interactive version
+p <- data %>%
+  mutate(gdpPercap=round(gdpPercap,0)) %>%
+  mutate(pop=round(pop/1000000,2)) %>%
+  mutate(lifeExp=round(lifeExp,1)) %>%
+  arrange(desc(pop)) %>%
+  mutate(country = factor(country, country)) %>%
+  mutate(text = paste("Country: ", country, "\nPopulation (M): ", pop, "\nLife Expectancy: ", lifeExp, "\nGdp per capita: ", gdpPercap, sep="")) %>%
+  ggplot( aes(x=gdpPercap, y=lifeExp, size = pop, color = continent, text=text)) +
+    geom_point(alpha=0.7) +
+    scale_size(range = c(1.4, 19), name="Population (M)") +
+    scale_color_viridis(discrete=TRUE, guide=FALSE) +
+    theme_ipsum() +
+    theme(legend.position="none")
+
+ggplotly(p, tooltip="text")
+````
