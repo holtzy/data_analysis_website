@@ -10,3 +10,11 @@ https://holtzy.github.io/data_analysis_website/
 
 The slides with step by step explanation are here:
 https://github.com/holtzy/data_analysis_website/blob/main/Talk_online_analytics_report.pdf
+
+
+-----------
+
+Additional resources:
+
+- [pimp my rmd](https://holtzy.github.io/Pimp-my-rmd/): a set of trick and tips for better R Markdown reports
+- [epurate](https://github.com/holtzy/epuRate): a template to make your rmd report looking neat
