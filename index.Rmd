@@ -1,16 +1,35 @@
 ---
-title: "Analysis the gapminder dataset"
-output: html_document
+title: "Gapminder analysis"
+author: "[Yan Holtz](https://github.com/holtzy)"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+mail: "yan.holtz.data@gmail.com"
+linkedin: "yan-holtz-2477534a"
+twitter: "r_graph_gallery"
+github: "holtzy"
+home: "www.yan-holtz.com"
+# !!! You need to provide a logo image here !!! Or just delete the field for no logo
+logo: "logo_gallery.png"
+output:
+  epuRate::epurate:
+    toc: TRUE
+    number_sections: FALSE
+    code_folding: "show"
 ---
+
+
+<br><br>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 ## Libraries
+*** 
 
 Let's load some libraries needed
-```{r warning=FALSE }
+```{r, warning=FALSE, message=FALSE }
 # Libraries
 library(tidyverse)   # includes ggplot2
 library(hrbrthemes)  # better chart appearance
@@ -23,6 +42,7 @@ library(gapminder)
 ```
 
 ## Data wrangling
+*** 
 
 Let's keep data for 2007 only
 
@@ -32,6 +52,7 @@ data <- gapminder %>% filter(year=="2007") %>% select(-year)
 
 
 ## Let's build a chart
+*** 
 
 Build the chart with ggplot2, make it interactive with plotly.
 
